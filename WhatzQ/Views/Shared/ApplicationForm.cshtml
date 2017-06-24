@@ -1,0 +1,42 @@
+﻿@model WhatzQ.Application
+@{
+    ViewBag.Title = "Application";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Application Form</h2>
+
+@using (Html.BeginForm("Save", "Application"))
+{
+    <div class="form-group">
+        <label>What's your Application ID?</label>
+        @Html.TextBoxFor(m => m.AppID, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>What's the related Subject ID?</label>
+        @Html.TextBoxFor(m => m.SubjectID, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's related factor Number?")
+        @Html.TextBoxFor(m => m.FNum, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Criteria Number?")
+        @Html.TextBoxFor(m => m.CNum, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Metrics Number?")
+        @Html.TextBoxFor(m => m.MNum, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Quality Value?")
+        @Html.TextBoxFor(m => m.QValue, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Uses Value?")
+        @Html.TextBoxFor(m => m.CNum, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(o => o.AppID)
+    <button type="submit" class="btn btn-primary">Save</button>
+}

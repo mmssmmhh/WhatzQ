@@ -1,0 +1,156 @@
+﻿@using WhatzQ
+@model dynamic
+@{
+    ViewBag.Title = "Full Database";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>  
+   
+<p><b>Subject List</b></p>  
+
+    @if (Model.Subjects == null)
+    {
+        <p>we don't have any Subjects yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+            </tr>
+            @foreach (Subject subject in Model.Subjects)
+            {
+                <tr>
+                    <td>@subject.ID</td>
+                    <td>@Html.ActionLink(@subject.Description, "EditSub","Subject",new{id=subject.ID},null)</td>
+                    
+                    
+                </tr>
+            }
+        </table>
+
+    }
+
+    <p><b>Factors List</b></p>
+    @if (Model.Factors == null)
+    {
+        <p>we don't have any Factors yet.</p>
+
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>No. of Factor</th>
+                <th>Subject ID</th>
+                <th>Description</th>
+
+            </tr>
+            @foreach (Factor factor in Model.Factors)
+            {
+                <tr>
+                    <td>@factor.FactNum</td>
+                    <td>@factor.Subject_Id</td>
+                    <td>@Html.ActionLink(@factor.Description, "EditFact", "Factor", new { id = factor.FactNum }, null)</td>
+
+                </tr>
+            }
+        </table>
+    }
+
+
+    <p><b>Criteria List</b></p>
+    @if (Model.Criteria == null)
+    {
+        <p>we don't have any Criteria yet.</p>
+
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>No.of Criterias</th>
+                <th>Subject ID</th>
+                <th>No.of Factors</th>
+                <th>Description</th>
+            </tr>
+            @foreach (Criterion criterion in Model.Criteria)
+            {
+                <tr>
+                    <td>@criterion.CriteriaNum</td>
+                    <td>@criterion.Subject_Id</td>
+                    <td>@criterion.Factor_Id</td>
+                    <td>@Html.ActionLink(@criterion.Description, "EditCrit", "Criteria", new { id = criterion.CriteriaNum }, null)</td>
+                </tr>
+            }
+        </table>
+    }
+    <p><b>Quality Metrics List</b></p>
+
+    @if (Model.QualityMetrics == null)
+    {
+        <p>we don't have any Quality Metrics yet.</p>
+
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>No.of Quality Metrics</th>
+                <th>Subject ID</th>
+                <th>No.of Factors</th>
+                <th>No.of Criterias</th>
+                <th>Description</th>
+                <th>Type of Metrics</th>
+                <th>Type of Value</th>
+                <th>Qualifiration Value</th>
+                <th>Relation with other Metrics</th>
+                <th>Rated Base</th>
+            </tr>
+            @foreach (QualityMetric quality in Model.QualityMetrics)
+            {
+                <tr>
+                    <td>@quality.MetricNum</td>
+                    <td>@quality.Subject_Id</td>
+                    <td>@quality.Factor_Id</td>
+                    <td>@quality.Criteria_Id</td>
+                    <td>@Html.ActionLink(@quality.Description, "EditMetric", "QualityMetric", new { id = quality.MetricNum }, null)</td>
+                    <td>@quality.TypeofMetric</td>
+                    <td>@quality.TypesofValue</td>
+                    <td>@quality.TypeofQualifiration</td>
+                    <td>@quality.RelationofMetric</td>
+                    <td>@quality.RatedBased</td>
+                </tr>
+            }
+        </table>
+    }
+    <p><b>Application Table</b></p>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>App ID</th>
+            <th>Subject ID</th>
+            <th>F#</th>
+            <th>C#</th>
+            <th>M#</th>
+            <th>Q.Value</th>
+            <th>Uses Value</th>
+
+        </tr>
+        @foreach (WhatzQ.Application app in Model.ApplicationTable)
+        {
+            <tr>
+                <td>@app.AppID</td>
+                <td>@app.SubjectID</td>
+                <td>@app.FNum</td>
+                <td>@app.CNum</td>
+                <td>@app.MNum</td>
+                <td>@Html.ActionLink(@app.QValue, "EditApp", "Application", new { id = app.AppID }, null)</td>
+                <td>@app.UsesValue</td>
+
+            </tr>
+        }
+    </table>
+

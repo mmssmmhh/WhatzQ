@@ -1,0 +1,54 @@
+﻿@model WhatzQ.QualityMetric
+@{
+    ViewBag.Title = "Quality Metric";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quality Metric</h2>
+
+@using (Html.BeginForm("Save", "QualityMetric"))
+{
+    <div class="form-group">
+        <label>What's your Quality attributes Metric Number?</label>
+        @Html.TextBoxFor(m => m.MetricNum, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>What's your Criteria Number?</label>
+        @Html.TextBoxFor(m => m.Criteria_Id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>What's your Factor Number?</label>
+        @Html.TextBoxFor(m => m.Factor_Id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's related Subject ID of this factor?")
+        @Html.TextBoxFor(m => m.Subject_Id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's your Quality Attribute Metrics (Description)?")
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Type of Metrics?")
+        @Html.TextBoxFor(m => m.TypeofMetric, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Type of Values (Standard, Evaluation)?")
+        @Html.TextBoxFor(m => m.TypesofValue, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Types of Qualifiration (Objective/Subjective/Non )?")
+        @Html.TextBoxFor(m => m.TypeofQualifiration, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Relations with other Metrics(Related-to/Against)?")
+        @Html.TextBoxFor(m => m.RelationofMetric, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's the Rated base of metric(Empty)?")
+        @Html.TextBoxFor(m => m.RatedBased, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(o => o.MetricNum)
+    <button type="submit" class="btn btn-primary">Save</button>
+}

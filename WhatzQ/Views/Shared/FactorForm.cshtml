@@ -1,0 +1,26 @@
+﻿@model WhatzQ.Factor
+@{
+    ViewBag.Title = "Factor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Factor</h2>
+
+@using (Html.BeginForm("Save", "Factor"))
+{
+    <div class="form-group">
+        <label >What's your Factor Number?</label>
+        @Html.TextBoxFor(m =>m.FactNum,new {@class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's related Subject ID of this factor?")
+        @Html.TextBoxFor(m => m.Subject_Id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayName("What's your Factor Description?")
+        @Html.TextBoxFor(m =>m.Description,new {@class="form-control"})
+    </div>
+    
+    @Html.HiddenFor(f=>f.FactNum)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
